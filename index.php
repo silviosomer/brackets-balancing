@@ -32,6 +32,11 @@
 
         1. "Pairs": An opened bracket must be closed to be valid, which means they must form pairs;<br/>
         2. "Scope": A pair must have both parts inside another pair or outside any pair, which means that a pair opening inside another pair and closing outside of it is not valid.
+        <br/>&nbsp;<br/>
+        <b>About the results</b><br/>&nbsp;<br/>
+
+        1. Brackets that follow the rules (valid ones) are marked in blue;<br/>
+        2. Brackets that do not follow the rules (not valid ones) are marked in red.
     </div>
     <div id="textEvaluate"></div>
 </div>
