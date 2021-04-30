@@ -2,7 +2,7 @@
 
 <br>
 
-Brackets Balancing Evaluator can tell if a sequence of brackets is balanced or not. Each of the following characters is a bracket: ()[]{}.
+Brackets Balancing Evaluator can tell if a sequence of brackets is balanced or not. Each of the following characters is a bracket: ```()[]{}```.
 
 <br>
 
@@ -15,16 +15,16 @@ Brackets Balancing Evaluator can tell if a sequence of brackets is balanced or n
 
 <b>Examples of valid pairs:</b>
 
-- (){}[]
-- [{()}](){}
+- ```(){}[]```
+- ```[{()}](){}```
 
 <br>
 
 <b>Examples of not valid pairs:</b>
 
-- [{)], "{" and ")" don't have a pair, the first one isn't closed and the second one isn't opened;
-- []{(), "{" don't have a pair, it isn't closed;
-- {}[(]), "(" does have a pair, but their parts open and close on different scopes.
+- ```[{)]```, ```{``` and ```)``` don't have a pair, the first one isn't closed and the second one isn't opened;
+- ```[]{()```, ```{``` doesn't have a pair, it isn't closed;
+- ```{}[(])```, ```(``` does have a pair, but their parts open and close on different scopes.
 
 <br>
 
@@ -36,9 +36,9 @@ When there is ambiguity concerning the opening and closing of a pair, precedence
 
 ## How it works
 
-After receiving a sequence of brackets, its contents are filtered, keeping only brackets and excluding everything else.
+After receiving a sequence of brackets, its content is filtered, keeping only brackets and excluding everything else.
 
-For example, the sequence "{asd(*871'2)}[]" is valid, even though it includes foreign characters.
+For example, the sequence ```{asd(*871'2)}[]``` is valid, even though it includes foreign characters.
 
 For this sequence, the first thing shown is the characters count:
 
@@ -83,11 +83,11 @@ brackets_close_order (count: 3) {
 
 <br>
 
-In this case, as the sequence of brackets is balanced, we get the message that "The sequence of brackets received is valid.".
+In this case, as the sequence of brackets is balanced, we get the message that ```The sequence of brackets received is valid.```.
 
 <br>
 
-When a sequence with unbalanced brackets is provided, additional information is shown. The first one is which brackets are orphan, i.e., are unmatched. In this example, the following sequence is used: "})){()()}".
+When a sequence with unbalanced brackets is provided, additional information is shown. The first one is which brackets are orphan, i.e., are unmatched. In this example, the following sequence is used: ```})){()()}```.
 
 ```
 orphan_brackets (count: 3) {
@@ -117,7 +117,7 @@ brackets_result_with_visual_aid (count: 9) {
 
 <br>
 
-If the user doesn't have a sequence of brackets readily available, it is possible to generate sequences with up to 60 characters, including only "(", ")", "[", "]", "{", "}". To do that, it only takes clicking on the "Random" button.
+If the user doesn't have a sequence of brackets readily available, it is possible to generate sequences with up to 60 characters, including only ```(```, ```)```, ```[```, ```]```, ```{```, ```}```. To do that, it only takes clicking on the "Random" button.
 
 
 <br>
