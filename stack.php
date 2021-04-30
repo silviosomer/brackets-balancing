@@ -161,7 +161,7 @@ foreach($valid_brackets as $brackets_key => $brackets_value) {
                 }
             }
 
-        // If not match was found...
+        // If no match was found...
         } else {
             // it means this is an orphan bracket.
             $orphans[$brackets_key] = $brackets_value;
@@ -206,7 +206,24 @@ if (count($orphans) > 0) {
     echo $brackets_style;
 
     $aux_str = "";
+    // $offset if used to control the indentation.
     $offset = 3;
+    /**
+     * $previous_open_close_move is used to keep track of which kind of bracket
+     * was last shown. If its content is "o", it means it was an opening one.
+     * If its content is "c", it means it was a closing one.
+     * 
+     * It is necessary, because we need to know when the $offset variable should
+     * have its value subtracted, which means we have a closing bracket with some
+     * other brackets inside it. 
+     * 
+     * For example:
+     * {
+     *    [((]( 
+     * }
+     * 
+     * In this case, the "}" bracket needs its offset reduced to be shown correctly.
+     */ 
     $previous_open_close_move = "o";
     $brackets_style = "<div style='padding-left: 20px;'><span class='result'><pre>brackets_result_with_visual_aid (count: $brackets_length) {\n   ";
     for ($i = 0; $i < $brackets_length; $i++) {
