@@ -1,0 +1,49 @@
+.string, .brackets {
+    font-size: 16px;
+    font-weight: normal;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.orphan-brackets, .result {
+    font-size: 24px;
+    color: red;
+    font-weight: bold;
+}
+
+.non-orphan-brackets {
+    font-size: 24px;
+    color: blue;
+    font-weight: bold;
+}
+
+.evaluation {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.form {
+    font-size: 20px;
+    padding: 20px;
+}
+
+.center {
+    min-width: 300px;
+    max-width: 1200px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.big-text {
+    font-size: 24px;
+}
+
+.message {
+    font-size: 16px;
+    padding: 20px;
+}
