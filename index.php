@@ -21,7 +21,8 @@
     <div class="card-body">
         <div class="form-group">
             <label for="text_evaluate">Submit a sequence to be evaluated:</label><br>
-            <input type="text" class="form-control big-text" id="text_evaluate" name="text_evaluate" placeholder="Brackets sequence"><br>
+            <input type="text" class="form-control big-text" id="text_evaluate" 
+            name="text_evaluate" placeholder="Brackets sequence"><br>
         </div>
         <button type="submit" class="btn btn-primary" onClick="textEvaluate('provided')">Submit</button>
         <button type="submit" class="btn btn-primary" onClick="textEvaluate('random')">Random</button>
@@ -31,7 +32,8 @@
         <b>Rules to have balanced brackets</b><br/>&nbsp;<br/>
 
         1. "Pairs": An opened bracket must be closed to be valid, which means they must form pairs;<br/>
-        2. "Scope": A pair must have both parts inside another pair or outside any pair, which means that a pair opening inside another pair and closing outside of it is not valid.
+        2. "Scope": A pair must have both parts inside another pair or outside any pair, which means 
+        that a pair opening inside another pair and closing outside of it is not valid.
         <br/>&nbsp;<br/>
         <b>About the results</b><br/>&nbsp;<br/>
 
