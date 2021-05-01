@@ -11,6 +11,7 @@ if (isset($_POST['text_json'])) {
     $json = json_decode($_POST['text_json'], true);
     $text_evaluate = $json['text_evaluate'];
 }
+evaluation($text_evaluate);
 
 function evaluation($text_evaluate)
 {
