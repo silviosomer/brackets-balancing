@@ -13,6 +13,19 @@ if (isset($_POST['text_json'])) {
 }
 evaluation($text_evaluate);
 
+function randomBrackets()
+{
+    $brackets = str_repeat("(", rand(0, 5));
+    $brackets .= str_repeat(")", rand(0, 5));
+    $brackets .= str_repeat("[", rand(0, 5));
+    $brackets .= str_repeat("]", rand(0, 5));
+    $brackets .= str_repeat("{", rand(0, 5));
+    $brackets .= str_repeat("}", rand(0, 5));
+    $brackets = str_shuffle($brackets);
+
+    return $brackets;
+}
+
 function evaluation($text_evaluate)
 {
     /**
@@ -28,17 +41,16 @@ function evaluation($text_evaluate)
             echo '<div class="success">No brackets sequence was provided. Generating 
             and analysing a random one.</div>';
         case "random":
-            $brackets = str_repeat("(", rand(0, 10));
-            $brackets .= str_repeat(")", rand(0, 10));
-            $brackets .= str_repeat("[", rand(0, 10));
-            $brackets .= str_repeat("]", rand(0, 10));
-            $brackets .= str_repeat("{", rand(0, 10));
-            $brackets .= str_repeat("}", rand(0, 10));
-            $brackets = str_shuffle($brackets);
+            $brackets = randomBrackets();
             break;
         default:
             $brackets = $text_evaluate;
             break;
+    }
+
+    // Preparing for edge cases.
+    while (empty($brackets)) {
+        $brackets = randomBrackets();
     }
     $brackets_length = strlen($brackets);
 
