@@ -203,72 +203,72 @@ function evaluation($text_evaluate)
         echo $brackets_style;
     }
 
-    if (count($orphans) > 0) {
-        $aux_str = "";
-        $brackets_style = "<div style='padding-left: 20px;'><span class='result'><pre>brackets_result_in_line (count: $brackets_length) {\n   ";
-        for ($i = 0; $i < $brackets_length; $i++) {
-            if (isset($orphans[$i])) {
-                $aux_str .= '<span class="orphan-brackets">' . substr($brackets, $i, 1) . '</span>';
-            } elseif (isset($orphans[$i])) {
-                $aux_str .= '<span class="orphan-brackets">' . substr($brackets, $i, 1) . '</span>';
-            } else {
-                $aux_str .= '<span class="non-orphan-brackets">' . substr($brackets, $i, 1) . '</span>';
-            }
+    $aux_str = "";
+    $brackets_style = "<div style='padding-left: 20px;'><span class='result'><pre>brackets_result_in_line (count: $brackets_length) {\n   ";
+    for ($i = 0; $i < $brackets_length; $i++) {
+        if (isset($orphans[$i])) {
+            $aux_str .= '<span class="orphan-brackets">' . substr($brackets, $i, 1) . '</span>';
+        } elseif (isset($orphans[$i])) {
+            $aux_str .= '<span class="orphan-brackets">' . substr($brackets, $i, 1) . '</span>';
+        } else {
+            $aux_str .= '<span class="non-orphan-brackets">' . substr($brackets, $i, 1) . '</span>';
         }
-        $brackets_style .= $aux_str;
-        $brackets_style .= "\n}</pre></span></div>";
-        // Shows, in a line, the sequence of no valid brackets.
-        echo $brackets_style;
-
-        $aux_str = "";
-        // $offset if used to control the indentation.
-        $offset = 3;
-        /**
-         * $previous_open_close_move is used to keep track of which kind of bracket
-         * was last shown. If its content is "o", it means it was an opening one.
-         * If its content is "c", it means it was a closing one.
-         * 
-         * It is necessary, because we need to know when the $offset variable should
-         * have its value subtracted, which means we have a closing bracket with some
-         * other brackets inside it. 
-         * 
-         * For example:
-         * {
-         *    [((]( 
-         * }
-         * 
-         * In this case, the "}" bracket needs its offset reduced to be shown correctly.
-         */ 
-        $previous_open_close_move = "o";
-        $brackets_style = "<div style='padding-left: 20px;'><span class='result'><pre>brackets_result_with_visual_aid (count: $brackets_length) {\n   ";
-        for ($i = 0; $i < $brackets_length; $i++) {
-            if (isset($orphans[$i])) {
-                $aux_str .= '<span class="orphan-brackets">' . substr($brackets, $i, 1) . '</span>';
-            } elseif (isset($orphans[$i])) {
-                $aux_str .= '<span class="orphan-brackets">' . substr($brackets, $i, 1) . '</span>';
-            } else {
-                if (in_array(substr($brackets, $i, 1), $open)) {
-                    $aux_str .= "\n" . str_repeat(" ", $offset) . "<span class='non-orphan-brackets'>" . substr($brackets, $i, 1) . "</span>";
-                    $offset += 3;
-                    $previous_open_close_move = "o";
-                }
-
-                if (in_array(substr($brackets, $i, 1), $close)) {
-                    $offset -= 3;
-                    if ($previous_open_close_move == "c") {
-                        $aux_str .= "\n" . str_repeat(" ", $offset) . "<span class='non-orphan-brackets'>" . substr($brackets, $i, 1) . "</span>";
-                    } else {
-                        $aux_str .= "<span class='non-orphan-brackets'>" . substr($brackets, $i, 1) . "</span>";
-                    }
-                    $previous_open_close_move = "c";
-                }
-            }
-        }
-        $brackets_style .= $aux_str;
-        $brackets_style .= "\n}</pre></span></div>";
-        // Shows, with visual aid, the sequence of no valid brackets.
-        echo $brackets_style;
     }
+    $brackets_style .= $aux_str;
+    $brackets_style .= "\n}</pre></span></div>";
+    // Shows, in a line, the sequence of no valid brackets.
+    echo $brackets_style;
+
+    $aux_str = "";
+    // $offset if used to control the indentation.
+    $offset = 3;
+    /**
+     * $previous_open_close_move is used to keep track of which kind of bracket
+     * was last shown. If its content is "o", it means it was an opening one.
+     * If its content is "c", it means it was a closing one.
+     * 
+     * It is necessary, because we need to know when the $offset variable should
+     * have its value subtracted, which means we have a closing bracket with some
+     * other brackets inside it. 
+     * 
+     * For example:
+     * {
+     *    [((]( 
+     * }
+     * 
+     * In this case, the "}" bracket needs its offset reduced to be shown correctly.
+     */ 
+    $previous_open_close_move = "o";
+    $brackets_style = "<div style='padding-left: 20px;'><span class='result'><pre>brackets_result_with_visual_aid (count: $brackets_length) {\n   ";
+    for ($i = 0; $i < $brackets_length; $i++) {
+        if (isset($orphans[$i])) {
+            $aux_str .= '<span class="orphan-brackets">' . substr($brackets, $i, 1) . '</span>';
+        } else {
+            if (in_array(substr($brackets, $i, 1), $open)) {
+                if (!empty($aux_str)) {
+                    $aux_str .= "\n" . str_repeat(" ", $offset) . "<span class='non-orphan-brackets'>" . substr($brackets, $i, 1) . "</span>";
+                } else {
+                    $aux_str .= "<span class='non-orphan-brackets'>" . substr($brackets, $i, 1) . "</span>";
+                }
+                $offset += 3;
+                $previous_open_close_move = "o";
+            }
+
+            if (in_array(substr($brackets, $i, 1), $close)) {
+                $offset -= 3;
+                if ($previous_open_close_move == "c") {
+                    $aux_str .= "\n" . str_repeat(" ", $offset) . "<span class='non-orphan-brackets'>" . substr($brackets, $i, 1) . "</span>";
+                } else {
+                    $aux_str .= "<span class='non-orphan-brackets'>" . substr($brackets, $i, 1) . "</span>";
+                }
+                $previous_open_close_move = "c";
+            }
+        }
+    }
+    $brackets_style .= $aux_str;
+    $brackets_style .= "\n}</pre></span></div>";
+    // Shows, with visual aid, the sequence of no valid brackets.
+    echo $brackets_style;
 
     if (count($orphans) == 0) {
         echo '
